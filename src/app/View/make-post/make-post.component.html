@@ -1,0 +1,28 @@
+<div class="grid grid-cols-12 min-h-screen">
+    <div *ngIf="pdfUrl" class="col-span-6 col-start-2 lg:col-start-2">
+        <iframe [src]="pdfUrl" class="w-full h-full"></iframe>
+    </div>
+
+    <div class="col-span-6 col-start-8 lg:col-start-8">
+        <div class="pt-12">
+            <div class="grid grid-cols-12 mb-5">
+                <div class="col-start-11 col-span-1 flex justify-end">
+                    <button (click)="removeParagraph()" class="text-platinum">
+                        <mat-icon class="icon-display">remove</mat-icon>
+                    </button>
+                    <button (click)="addParagraph()" class="text-platinum ml-7">
+                        <mat-icon class="icon-display">add</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div *ngFor="let paragraph of numberOfParagraphs; let i = index" class="grid grid-cols-12 mt-2 rounded">
+                <textarea class="col-span-10 text-my-black p-2 h-20 col-start-2 resize-none border rounded-md focus:outline-none" [(ngModel)]="paragraphTexts[i]"></textarea>
+            </div>
+            <div class="grid grid-cols-12 mt-4">
+                <button (click)="submitPost()" class="hover:bg-red-400 col-start-2 col-span-2 font-semibold background-indian-red border-platinum border-2 py-3 px-4 rounded text-platinum ml-2">
+                    Submit Post
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="flex flex-col items-center">
+  <div class="mt-20">
+    <div class="flex flex-row">
+      <img src="../../../../assets/images/babel_spellout_white.png" alt="babels logo" width="290" class="mr-6">
+      <img src="../../../../assets/images/thebabelcompany_logo_white.png" alt="babels logo" width="70">
+    </div>
+    <div *ngIf=!wantToLogin>
+      <app-sign-in [registerObj]="registerObj"></app-sign-in>
+    </div>
+    <div *ngIf="wantToLogin">
+      <app-login [loginObj]="loginObj"></app-login>
+    </div>
+
+    <div class="mt-5 flex justify-between w-96">
+      <p class="font-light text-platinum">
+        {{ wantToLogin ? 'Don’t have an account yet?' : 'Already have an account?'}} <button (click)="onSwitchMode()" id="switchButton" class="font-medium text-platinum hover:underline dark:text-primary-500">{{ wantToLogin ? 'Sign Up' : 'Login'}}</button>
+      </p>
+      <button (click)="onLoginOrRegister()" id="submitButton" type="submit" [disabled]="!isFormValid()" class="background-indian-red text-platinum rounded pl-4 pr-4 pt-1.5 pb-1.5 hover:bg-red-400">{{ wantToLogin ? 'Login' : 'Sign Up'}}</button>
+    </div>
+  </div>
+</div>

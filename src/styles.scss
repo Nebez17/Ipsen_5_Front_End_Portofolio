@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body { height: 100%; background-color: #071013; color: #DFE0E2}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.background-platinum{
+  background-color: #DFE0E2;
+}
+.background-silver{
+  background-color: #AAAAAA;
+}
+.background-rosy-brown{
+  background-color: #B7999C;;
+}
+.background-indian-red{
+  background-color: #EB5160;;
+}
+.background-onyx{
+  background-color: #212121;
+}
+.background-black{
+  background-color: #071013;
+}
+
+.text-platinum{
+  color: #DFE0E2;
+}
+.text-silver{
+  color: #AAAAAA;
+}
+.text-rosy-brown{
+  color: #B7999C;;
+}
+.text-indian-red{
+  color: #EB5160;;
+}
+.text-my-black{
+  color: #071013;
+}
+
+.border-platinum{
+  border-color: #DFE0E2;
+}
+.border-indian-red{
+  border-color: #EB5160;
+}
+

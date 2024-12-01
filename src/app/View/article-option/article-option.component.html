@@ -1,0 +1,40 @@
+<div class="background-black">
+  <div *ngIf="!arePostsFiltered" class="grid grid-cols-12 justify-between px-4 py-6 pb-16 min-w-screen-xl mx-auto">
+    <div class="col-start-3 col-span-8 3xl:col-span-5 3xl:col-start-3">
+      <app-big-post [bigPost]="bigPost"></app-big-post>
+    </div>
+    <div class="text-white p-4 ml-3 col-span-8 3xl:col-span-3 col-start-3">
+      <app-filter [genres]="genres" [filterForm]="filterForm" [posts]="posts" (filterApplied)="onFilterApplied($event)" ></app-filter>
+    </div>
+
+
+  </div>
+
+  <div *ngIf="!arePostsFiltered" class="flex flex-col items-center">
+    <app-bulk-of-posts [posts]="posts.slice(0,8)"></app-bulk-of-posts>
+  </div>
+
+  <div *ngIf="!arePostsFiltered"  class="background-onyx flex flex-col items-center">
+    <p class="text-platinum font-semibold text-4xl pt-10">Just added</p>
+    <app-bulk-of-posts [posts]="latestPosts" ></app-bulk-of-posts>
+  </div>
+
+  <div *ngIf="!arePostsFiltered" class="flex flex-col items-center pt-4">
+    <app-bulk-of-posts [posts]="arePostsFiltered ? filteredPosts : posts.slice(8)"></app-bulk-of-posts>
+  </div>
+
+
+
+  <div *ngIf="arePostsFiltered" class="flex flex-col items-center">
+    <div class="grid grid-cols-12">
+      <div class="col-start-3 col-span-6 3xl:col-span-5 3xl:col-start-3">
+        <app-big-post [bigPost]="filteredPosts.at(0)"></app-big-post>
+      </div>
+
+      <div class="text-white p-4 ml-3 col-span-12 4xl:col-span-3">
+        <app-filter [genres]="genres" [filterForm]="filterForm" [posts]="posts" (filterApplied)="onFilterApplied($event)" ></app-filter>
+      </div>
+    </div>
+    <app-bulk-of-posts [posts]="filteredPosts.slice(1)"></app-bulk-of-posts>
+  </div>
+</div>

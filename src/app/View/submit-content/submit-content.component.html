@@ -1,0 +1,261 @@
+<div *ngIf="isUserLoggedInService.isLoggedIn()">
+  <div class="text-white background-grey pt-10 pb-10 pl-8" xmlns="http://www.w3.org/1999/html">
+    <div class="grid xl:grid-cols-4 gap-8 grid-container md:grid-cols-2 grid-cols-1 pr-6">
+      <div class="xl:col-start-2 col-span-1 col-start-1">
+        <p class="text-xl font-semibold">PERSONAL INFO</p>
+      </div>
+
+      <div class="flex flex-col xl:col-start-2 col-span-1 col-start-1">
+        <p>Username *</p>
+        <input type="text"
+               class="w-full rounded text-black pl-2 pt-2 pb-2 bg-gray-400" [value]="user.username" readonly
+               [(ngModel)]="user.username">
+        <p class="text-gray-400 w-full pt-1">Please enter the username of your babel account.</p>
+        <p *ngIf="!isValidTextInput(user.username)" class="text-red-600">Username not valid. It cannot be empty or contain special characters</p>
+      </div>
+      <div class="flex flex-col xl:col-start-3 col-span-1 md:col-start-2 col-start-1">
+        <p>Name *</p>
+        <input type="text" class="w-full rounded text-black pl-2 pt-2 pb-2" [value]="user.first_name"
+               [(ngModel)]="name">
+
+        <p class="text-gray-400 w-full pt-1">Please enter the name or alias you would like your story to be linked to.
+          This could be your real name, a pen name, or any other name you prefer.</p>
+        <p *ngIf="!isValidTextInput(name)" class="text-red-600">Name not valid. It cannot be empty or contain special characters</p>
+      </div>
+
+      <div class="flex flex-col xl:col-start-2 col-span-1 col-start-1">
+        <p>Email Address *</p>
+        <input type="text" class="w-full rounded text-black pl-2 pt-2 pb-2" id="userMail" [value]="user.email" [(ngModel)]="email">
+
+        <p class="text-gray-400 w-full pt-1">Please enter a valid email address where you would like to
+          receive updates about your story submission. This email address will also  be used
+          to notify you if your story is selected for publication.</p>
+        <p *ngIf="!isValidEmail(email)" class="text-red-600">Email not valid. The format should be: example&#64;mail.abc</p>
+      </div>
+      <div class="flex flex-col xl:col-start-3 col-span-1 md:col-start-2 col-start-1">
+        <p>Online Profiles</p>
+        <input type="text" class="w-full rounded text-black pl-2 pt-2 pb-2"
+               [(ngModel)]="submissionObj.online_profiles" (ngModelChange)="onOnline_profilesChange()">
+        <p class="text-gray-400 w-full pt-1">If your post is approved, the provided links will be tied to your post.</p>
+        <p *ngIf="!isValidTextInput(submissionObj.online_profiles)" class="text-red-600">Online profiles not valid. It cannot be empty or contain special characters</p>
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <div class="text-white background-grey pt-10 pb-10 pl-8">
+    <div class="grid xl:grid-cols-4 gap-8 grid-container md:grid-cols-2 grid-cols-1 pr-6">
+      <div class="xl:col-start-2 col-span-1 col-start-1">
+        <p class="text-xl font-semibold">STORY DETAILS</p>
+      </div>
+
+      <div class="flex flex-col xl:col-start-2 col-span-1 col-start-1">
+        <p>Story Title *</p>
+        <input type="text" class="w-full rounded text-black pl-2 pt-2 pb-2 mb-2"  [(ngModel)]="story_title"
+               name="text"
+               placeholder="Enter title"
+               required>
+        <p *ngIf="!isValidTextInput(story_title)" class="text-red-600">Story title not valid. It cannot be empty or contain special characters</p>
+      </div>
+      <div class="flex flex-col xl:col-start-3 col-span-1 md:col-start-2 col-start-1">
+        <p>Story Type *</p>
+        <select name="story_type" id="story_type" class="rounded text-black pt-2 pb-2" [(ngModel)]="type">
+          <option value="Text">Text</option>
+          <option value="Audio">Audio</option>
+          <option value="Video">Video</option>
+        </select>
+        <p class="text-gray-400 w-full pt-1">Pick what type of story you wish to upload.</p>
+      </div>
+
+      <div class="flex flex-col xl:col-start-2 md:col-span-2 col-span-1 col-start-1">
+        <p>Word Count</p>
+        <input type="number" class="w-full rounded text-black pl-2 pt-2 pb-2" [(ngModel)]="wordCount">
+        <p class="text-gray-400 w-full pt-1">Please provide the exact word count of you story, excluding the title. Entering
+          an inaccurate word count may result in your work not being reviewed.</p>
+      </div>
+
+      <div class="flex flex-col xl:col-start-2 md:col-span-2 col-span-1 col-start-1">
+        <p>Genre</p>
+        <div class="flex flex-wrap">
+          <label class="inline-flex items-center mr-4 pt-2">
+            <input type="checkbox" class="rounded mr-2 size-4">
+            Fantasy
+          </label>
+          <label class="inline-flex items-center mr-4 pt-2">
+            <input type="checkbox" class="rounded mr-2 size-4">
+            Science Fiction
+          </label>
+          <label class="inline-flex items-center mr-4 pt-2">
+            <input type="checkbox" class="rounded mr-2 size-4">
+            Horror
+          </label>
+          <label class="inline-flex items-center mr-4 pt-2">
+            <input type="checkbox" class="rounded mr-2 size-4">
+            Adventure
+          </label>
+          <label class="inline-flex items-center mr-4 pt-2">
+            <input type="checkbox" class="rounded mr-2 size-4">
+            Mystery
+          </label>
+          <label class="inline-flex items-center mr-4 pt-2">
+            <input type="checkbox" class="rounded mr-2 size-4">
+            Thriller
+          </label>
+          <label class="inline-flex items-center mr-4 pt-2">
+            <input type="checkbox" class="rounded mr-2 size-4">
+            Romance
+          </label>
+          <label class="inline-flex items-center mr-4 pt-2">
+            <input type="checkbox" class="rounded mr-2 size-4">
+            Drama
+          </label>
+          <label class="inline-flex items-center mr-4 pt-2">
+            <input type="checkbox" class="rounded mr-2 size-4">
+            Satire
+          </label>
+          <label class="inline-flex items-center mr-4 pt-2">
+            <input type="checkbox" class="rounded mr-2 size-4">
+            Western
+          </label>
+          <label class="inline-flex items-center mr-4 pt-2">
+            <input type="checkbox" class="rounded mr-2 size-4">
+            Poetry
+          </label>
+          <label class="inline-flex items-center mr-4 pt-2">
+            <input type="checkbox" class="rounded mr-2 size-4">
+            Historical Fiction
+          </label>
+          <label class="inline-flex items-center mr-4 pt-2">
+            <input type="checkbox" class="rounded mr-2 size-4">
+            Non-Fiction
+          </label>
+          <label class="inline-flex items-center mr-4 pt-2">
+            <input type="checkbox" class="rounded mr-2 size-4">
+            Erotica
+          </label>
+        </div>
+        <p class="text-gray-400 w-full pt-1">What genre(s) fit your story?</p>
+      </div>
+
+      <div class="flex flex-col xl:col-start-2 md:col-span-2 col-span-1 col-start-1">
+        <p>Additional Notes</p>
+
+        <input [(ngModel)]="additional_notes" type="text" placeholder="Please provide a brief summary of your story and/or add additional information you think we should know about (e.g. tags, warnings, triggers, notes, etc). In case you're submitting an audio or visual story, you can also paste the link to your work in here instead of uploading it!" class="w-full rounded text-black pl-2 pt-2 pb-2">
+      </div>
+
+      <div class="flex flex-col xl:col-start-2 md:col-span-2 col-span-1 col-start-1">
+        <p>Affirmation of Originality *</p>
+        <select name="affirmation_originality" id="affirmation_originality" class="rounded text-black pt-2 pb-2">
+          <option value="Text">Yes, I am the creator of the submitted work</option>
+          <option value="Text">No, I am not the creator of the submitted work</option>
+        </select>
+        <p class="text-gray-400 w-full pt-1">Did you personally create the work you want to submit?</p>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+
+
+  <div class="text-white background-grey pt-10 pb-10 pl-8" xmlns="http://www.w3.org/1999/html">
+    <div class="grid xl:grid-cols-4 gap-8 grid-container md:grid-cols-2 grid-cols-1 pr-6">
+      <div class="xl:col-start-2 col-span-1 col-start-1">
+        <p class="text-xl font-semibold">PREFERENCE</p>
+      </div>
+
+      <div class="flex flex-col xl:col-start-2 col-span-1 col-start-1">
+        <p>Preferred Destination</p>
+        <select name="affirmation_originality" id="Category" class="rounded text-black pt-2 pb-2" [(ngModel)]="preffered_destination">
+          <option value="BABELs_CHOICE">BABELs CHOICE</option>
+          <option value="OFFICIAL_SELECTION">OFFICIAL SELECTION</option>
+          <option value="SANDBOX">SANDBOX</option>
+          <option value="No Destination">No Destination</option>
+        </select>
+        <p class="text-gray-400 w-full pt-1">Where on our platform do you want to be displayed?</p>
+      </div>
+      <div class="flex flex-col xl:col-start-3 col-span-1 md:col-start-2 col-start-1">
+        <p>Platform Presence</p>
+        <select name="affirmation_originality" id="Platform_presence" class="rounded text-black pt-2 pb-2" (change)="onPlatformPresenceChange($event)">
+          <option value="Yes, I consent.">Yes, I consent.</option>
+          <option value="No, I don't consent.">No, I don't consent.</option>
+        </select>
+        <p class="text-gray-400 w-full pt-1">If your story is approved, do you consent to its publication on our platform?</p>
+      </div>
+      <div class="xl:col-start-2 col-span-1 col-start-1">
+        <p class="text-xl font-semibold">PAID SERVICE</p>
+      </div>
+      <div class="flex flex-col xl:col-start-2 col-span-1 col-start-1">
+        <p>Express Experience</p>
+        <select name="affirmation_originality" id="Express" class="rounded text-black pt-2 pb-2" (change)="onExpressExperienceChange($event)">
+          <option value="No, the usual timeframe works for me.">No, the usual timeframe works for me.</option>
+          <option value="Yes, I want an express experience.">Yes, I want an express experience.</option>
+        </select>
+        <p class="text-gray-400 w-full pt-1">Would you like your story to bew reviewd within 2 weeks after your submiting it? The Express Exprience ($4.99) will put your story in our priority review list.</p>
+      </div>
+      <div class="flex flex-col xl:col-start-3 col-span-1 md:col-start-2 col-start-1">
+        <p>Feedback Focus</p>
+        <select name="affirmation_originality" id="Feedback" class="rounded text-black pt-2 pb-2" [(ngModel)]="extraFeedback" (change)="handleFeedbackSelection($event)">
+          <option value="true">Yes, I want feedback</option>
+          <option value="false">No, I don't want feedback</option>
+        </select>
+        <p class="text-gray-400 w-full pt-1">Feedback Focus is our feedback service. We will review your work and share our feedback with you to help you improve your craft.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="text-white background-grey pt-10 pb-10 pl-8" xmlns="http://www.w3.org/1999/html">
+    <div class="grid xl:grid-cols-4 gap-8 grid-container md:grid-cols-2 grid-cols-1 pr-6">
+
+      <div class="xl:col-start-2 col-span-1 col-start-1">
+        <p class="text-xl font-semibold">PAYMENT</p>
+      </div>
+
+      <div class="flex flex-col xl:col-start-2 md:col-span-2 col-span-1 col-start-1">
+        <p>Total Price</p>
+          <input type="text" [value]="totalprice" readonly class="w-full rounded text-black pl-2 pt-2 pb-2 bg-gray-400">
+      </div>
+
+
+      <div class="flex flex-col xl:col-start-2 col-span-1 col-start-1">
+        <label for="fileUpload" class="bg-platinum text-my-black bg-white hover:bg-gray-400 font-bold rounded px-4 py-2 cursor-pointer text-center">
+          Upload File
+        </label>
+        <input type="file" id="fileUpload" accept="application/pdf" (change)="onFileSelected($event)" class="hidden" />
+        <span *ngIf="selectedFileName" class="mt-2 text-gray-600">{{ selectedFileName }}</span>
+        <p class="text-gray-400 w-full pt-1">
+          You can only upload <b class="font-bold text-gray-400">PDF file types.</b>
+        </p>
+
+      </div>
+
+      <div class="flex flex-col xl:col-start-2 col-span-1 col-start-1">
+        <p>Consent *</p>
+        <div class="flex flex-wrap">
+          <label class="inline-flex items-center mr-4 pt-2">
+            <input type="checkbox" class="rounded mr-2 size-4" [(ngModel)]="consentGiven">
+            Yes I have read and agree with the privacy policy and terms and conditions, and consent to the posting of my story to the destination of my choosing once it's approved.
+          </label>
+        </div>
+      </div>
+      <button *ngIf="submissionValidityCheck() && totalprice == 0" type="button" class="background-indian-red pl-12 flex flex-col xl:col-start-2 max-w-36 col-start-1 hover:bg-red-300 text-platinum font-bold rounded p-2 text-center" (click)="createSubmission()">Submit</button>
+      <ngx-paypal *ngIf="submissionValidityCheck() && totalprice != 0" class="flex flex-col xl:col-start-2 col-start-1" [config]="payPalConfig"></ngx-paypal>
+
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="!isUserLoggedInService.isLoggedIn()" class="flex items-center justify-center h-screen text-white text-center flex-col">
+  <p class="text-2xl pb-4">You have to be logged in to submit a story!</p>
+  <a routerLink="/sign-in" class="bg-white rounded pr-4 pl-4 pt-2.5">
+    <p class="font-semibold text-black text-lg">Sign In</p>
+  </a>
+</div>
+
+

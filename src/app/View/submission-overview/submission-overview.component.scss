@@ -1,0 +1,25 @@
+.scrollable-table {
+  display: block;
+  height: 600px;
+  width: 1050px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff #0a0a0a;
+  border: 1px solid #1e1e1e;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background-color: #1e1e1e;
+  z-index: 1;
+}
+
+button.review-button {
+  background-color: #262626;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #1e1e1e;
+  }
+}

@@ -1,0 +1,22 @@
+<div class="h-screen overflow-y-auto p-4">
+  <div *ngFor="let groupedCriteria of groupedCriterias; let i = index">
+    <div class="border rounded-md shadow-md p-4 mt-3">
+      <h1 (click)="toggleCategoryVisibility(i)" class="dropdown-header flex justify-between items-center cursor-pointer">
+        <span>{{groupedCriteria.mainName}}</span>
+        <span [ngClass]="{'expanded': categoryVisibility[i], 'collapsed': !categoryVisibility[i]}">
+          {{ categoryVisibility[i] ? '▼' : '▶' }}
+        </span>
+      </h1>
+      <div *ngIf="categoryVisibility[i]">
+        <div *ngFor="let criteria of groupedCriteria.criterias">
+          <app-rubric-element [criteria]="criteria" [isUserReviewer]="isUserReviewer" class="w-full"></app-rubric-element>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="h-20 flex items-center justify-end" *ngIf="isUserReviewer">
+    <button [routerLink]="['/makePost']"
+            [queryParams]="{submissionId: submission.id}"
+            class="background-indian-red px-5 py-3 rounded">Change to post</button>
+  </div>
+</div>

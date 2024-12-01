@@ -1,0 +1,21 @@
+<div class="background-black">
+  <p class="text-platinum text-2xl font-semibold pl-7 pt-8">Edit Role</p>
+  <div mat-dialog-content>
+    <form [formGroup]="roleEditForm">
+      <mat-form-field>
+        <mat-label class="text-my-black">Role Name</mat-label>
+        <input matInput class="border-8" formControlName="name">
+      </mat-form-field>
+
+      <div *ngFor="let right of rightsList">
+        <mat-checkbox [checked]="isChecked(right)" (change)="toggleCheckbox($event.checked, right)" class="rounded background-platinum pr-5 py-1 my-2">
+          {{ right }}
+        </mat-checkbox>
+      </div>
+    </form>
+  </div>
+  <div mat-dialog-actions>
+    <button class="ml-auto text-indian-red background-platinum border-2 border-indian-red rounded px-3 py-1 text-lg" (click)="onCancel()">Cancel</button>
+    <button class="mr-3 ml-3 text-platinum background-indian-red border-2 border-platinum rounded px-3 py-1 text-lg" (click)="onSave()">Save</button>
+  </div>
+</div>

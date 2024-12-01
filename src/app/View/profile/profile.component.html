@@ -1,0 +1,13 @@
+<div *ngIf="user" class="flex flex-col items-center justify-center relative">
+    <img src="../../../assets/images/mesopotamia.jpg" alt="Banner Image" class="w-full h-80 object-cover">
+    <img [src]="user.imageUrl" alt="Profile Image" class="rounded-full border-4 border-platinum relative bottom-10" height="120" width="120">
+
+    <p class="text-platinum text-4xl ">{{user.first_name + " " + user.last_name }}</p>
+
+    <app-social-media-links [socialMedias]="socialMedias" [iconSizeGeneral]="'h-14'" [iconSizeTwitter]="'h-12'"></app-social-media-links>
+
+    <div class="text-platinum mt-10">
+        <p class="text-2xl text-center">Content</p>
+          <app-bulk-of-posts [posts]="posts" [isProfileScreen]="true" ></app-bulk-of-posts>
+    </div>
+</div>

@@ -1,0 +1,109 @@
+.router-link-active {
+  color: lightgray;
+}
+
+.background-black {
+  background-color: #071013;
+}
+
+.nav-button {
+  font-weight: bold;
+  color: white;
+  font-size: 1.5rem;
+  font-family: 'proxima-nova', sans-serif;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-button:hover {
+  background-color: #312b2b;
+  color: #F0F0F0;
+}
+
+.nav-button.router-link-active {
+  background-color: #DFE0E2;
+  color: #000000;
+}
+
+
+.dropdown-menu {
+  display: none;
+}
+
+.flex-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@media (max-width: 650px) {
+    .centered-link {
+      flex-basis: 100%;
+      justify-content: space-evenly;
+      flex-direction: row-reverse;
+    }
+
+    .normal-menu {
+      display: none;
+    }
+
+    .dropdown-menu {
+      display: inline-block;
+    }
+
+    .dropbtn {
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: black;
+      min-width: 160px;
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      padding: 12px 16px;
+      display: block;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: black;
+    }
+
+    .dropdown-menu:hover .dropdown-content {
+      display: block;
+    }
+
+    .spacer {
+      flex: 1;
+    }
+
+    .mat-toolbar a.router-link-active,
+    .mat-toolbar .margin-button,
+    .mat-toolbar .margin-button2 {
+      order: 1;
+    }
+
+    .mat-toolbar .dropdown-content a.router-link-active {
+      border-bottom: none;
+    }
+}
+
+.proxima-nova{
+  font-family: proxima-nova, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+.icon-large {
+  font-size: 34px;
+  padding-right: 70px;
+  padding-bottom: 35px;
+}

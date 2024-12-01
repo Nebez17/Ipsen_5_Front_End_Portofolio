@@ -1,0 +1,12 @@
+<div class=" flex flex-row p-2">
+  <img [src]=socialMediaIcon alt="Instagram" class="h-14">
+  <div *ngIf="socialMediaAdded" class="flex justify-center ml-10">
+    <input [id]=category type="text" class="text-my-black pl-2 rounded w-80" [(ngModel)]="socialMediaLink">
+  </div>
+  <div *ngIf="!socialMediaAdded" class="flex justify-center ml-10">
+    <input  [id]=category type="text" placeholder="Add your social media!" class="text-my-black pl-2 rounded w-80" [(ngModel)]="socialMediaLink">
+  </div>
+  <button [id]="category+'button'" (click)="socialMediaAdded ? updateSocialMedia() : addSocialMedia()" class="ml-4 background-indian-red px-6 rounded">
+    Save
+  </button>
+</div>

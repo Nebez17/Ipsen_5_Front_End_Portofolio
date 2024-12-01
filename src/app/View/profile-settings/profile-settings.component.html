@@ -1,0 +1,40 @@
+<div class="min-h-screen flex items-center justify-center p-4">
+    <div class="p-8 rounded-lg shadow-md w-full sm:w-3/4 lg:w-2/3 xl:w-1/2">
+      <div class="mb-10">
+        <p class="text-2xl font-semibold">Add or Edit Social Media</p>
+        <app-add-social-media [socialMediaIcon]="'../../../assets/images/x.png'" [socialMediaType]="'X'" [category]="'TWITTER'"></app-add-social-media>
+        <app-add-social-media [socialMediaIcon]="'../../../assets/images/youtube.png'" [socialMediaType]="'Youtube'" [category]="'YOUTUBE'"></app-add-social-media>
+        <app-add-social-media [socialMediaIcon]="'../../../assets/images/insta.png'" [socialMediaType]="'Instagram'" [category]="'INSTAGRAM'"></app-add-social-media>
+        <app-add-social-media [socialMediaIcon]="'../../../assets/images/fb.png'" [socialMediaType]="'Facebook'" [category]="'FACEBOOK'"></app-add-social-media>
+      </div>
+
+      <p class="text-2xl font-semibold mb-4 text-platinum">Edit profile</p>
+      <form *ngIf="user" #profileForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+          <label for="first_name" class="block text-sm font-medium text-platinum">First name</label>
+          <input type="text" id="first_name" name="first_name" [(ngModel)]="user.first_name" class="background-platinum text-my-black mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-10 px-2" required>
+        </div>
+        <div class="mb-4">
+          <label for="last_name" class="block text-sm font-medium text-platinum">Last name</label>
+          <input type="text" id="last_name" name="last_name" [(ngModel)]="user.last_name" class="background-platinum text-my-black mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-10 px-2" required>
+        </div>
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-medium text-platinum">Email</label>
+          <input type="email" id="email" name="email" [(ngModel)]="user.email" class="background-platinum text-my-black mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-10 px-2" required>
+        </div>
+        <div class="mb-4">
+          <label for="donation_link" class="block text-sm font-medium text-platinum">Donation Link</label>
+          <input type="text" id="donation_link" name="donation_link" [(ngModel)]="user.donation_link" class="background-platinum mt-1 text-my-black focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-10 px-2">
+        </div>
+        <div class="mb-4">
+          <label for="imageUrl" class="block text-sm font-medium text-platinum">Image URL</label>
+          <input type="text" id="imageUrl" name="imageUrl" [(ngModel)]="user.imageUrl" class="background-platinum mt-1 text-my-black focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-10 px-2">
+        </div>
+        <div class="mt-4">
+          <button type="submit" class="inline-flex items-center px-6 py-3 border border-transparent rounded-md font-semibold  text-platinum uppercase tracking-widest background-indian-red text-platinum hover:bg-red-400 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 disabled:opacity-25 transition ease-in-out duration-150">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>

@@ -1,0 +1,32 @@
+<div class="text-platinum pt-10 pb-10 pl-14 pr-14" xmlns="http://www.w3.org/1999/html">
+    <div class="grid grid-cols-12 gap-6">
+      <div *ngFor="let submission of submissions" class="background-onyx col-span-4 p-3 rounded pl-10 pr-10 border-platinum border-2">
+        <div class="flex justify-center">
+          <p class="font-semibold text-xl">{{submission.story_title}}</p>
+        </div>
+        <div class="grid grid-cols-3">
+          <div class="col-span-1">
+            <a [routerLink]="['/profile']" [queryParams]="{username: submission.user_id.username}">
+              <img [src]="submission.user_id.imageUrl" alt="User profile image" class="rounded-full w-20 h-20 border-white border-2">
+              <p class="pt-2">{{submission.user_id.first_name}} {{submission.user_id.last_name}}</p>
+            </a>
+          </div>
+          <div class="col-span-2">
+            <p class="text-md">Status: {{submission.statusID.status}}</p>
+            <p class="text-md">Preferred Destination: {{submission.prefferd_destination}}</p>
+            <p class="text-md">Type: {{submission.type}}</p>
+            <p class="text-md">Extra Feedback: {{submission.extra_feedback  ? 'Yes' : 'No'}}</p>
+            <p class="text-md">Express Experience: {{ submission.express_experience ? 'Yes' : 'No' }}</p>
+          </div>
+        </div>
+        <div class="flex justify-end">
+          <a type="button" [routerLink]="['/feedback_with_text']"
+             [queryParams]="{submissionId: submission.id, isUserReviewer: isUserReviewer}"
+             routerLinkActive="router-link-active"
+             class="background-indian-red rounded p-3 hover:bg-red-300 font-semibold">
+            {{isUserReviewer ? "Review": "View Feedback"}}
+          </a>
+        </div>
+      </div>
+    </div>
+</div>

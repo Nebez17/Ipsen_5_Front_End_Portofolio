@@ -1,0 +1,94 @@
+<div class="background-black flex flex-col items-center justify-center h-dvh">
+  <img src="../../../assets/images/thebabelcompany_logo_white.png" alt="babels logo" height="40" width="120" class="pt-44">
+  <p class="text-platinum text-6xl pt-20 font-semibold">STORIES THAT MATTER</p>
+  <div class="pt-36 pb-52">
+    <a [routerLink]="['/submit_content']" routerLinkActive="router-link-active">
+      <div class="background-indian-red rounded p-4 hover:bg-red-300">
+        <div class="font-medium text-lg text-platinum">SUBMIT STORY</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+
+<div *ngIf="currentPost" class="background-onyx flex flex-col items-center justify-between px-4 py-6 pb-32 min-w-screen-xl mx-auto hidden xl:flex">
+  <p class="text-platinum font-semibold text-6xl pt-20 pb-10">BEST RATED STORIES</p>
+  <div class="">
+    <div class="flex items-center">
+
+      <div class="px-4">
+        <button class="text-platinum font-semibold text-5xl mr-9" (click)="previousItem()"><</button>
+      </div>
+
+      <div class="relative rounded-lg overflow-hidden mr-3" style="width: 700px; height: 400px;">
+        <a [routerLink]="['/article']" [queryParams]="{postId: currentPost.id}" routerLinkActive="router-link-active">
+          <img [src]="currentPost.imageUrl" alt="Story Image" class="absolute inset-0 w-full h-full object-cover object-center" style="width: 100%; height: 100%;">
+          <app-stars [average_rating]="currentPost.averageRating" class="absolute left-6 bottom-3"></app-stars>
+          <img [src]="currentPost.user.imageUrl" alt="User profile image" class="rounded-full absolute left-5 bottom-12 w-10 h-10">
+        </a>
+      </div>
+
+      <div class="ml-4">
+        <a [routerLink]="['/article']" [queryParams]="{postId: currentPost.id}" routerLinkActive="router-link-active">
+          <p class="text-platinum font-semibold text-3xl w-80">{{ currentPost.title }}</p>
+          <p class="text-rosy-brown w-80">{{ currentPost.text | slice:0:700 }}</p>
+        </a>
+      </div>
+
+      <div class="px-4">
+        <button class="text-platinum font-semibold text-5xl ml-9" (click)="nextItem()">></button>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-center mt-6">
+      <ng-container *ngFor="let story of highestRatedPosts; let i = index">
+        <div class="px-1" style="width: 30px">
+          <img [src]="i === highestRatedPostsIndex ? '../../../assets/images/Full_circle.png' : '../../../assets/images/Empty_Circle.png'" alt="Circle Image">
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="currentPost" class="background-onyx flex flex-col items-center justify-between px-4 py-6 pb-32 mx-auto xl:hidden">
+  <p class="text-platinum font-semibold text-6xl pt-20 pb-10">BEST RATED STORIES</p>
+  <div class="flex items-center">
+    <div class="px-4">
+      <button class="text-platinum font-semibold text-5xl mr-9 xs:mr-1 xxs:mr-0 xxxs:mr-0" (click)="previousItem()"><</button>
+    </div>
+
+    <div class="relative rounded-lg overflow-hidden mr-3" style="width: 60vw; height: 50vh;">
+      <a [routerLink]="['/article']" [queryParams]="{postId: currentPost.id}" routerLinkActive="router-link-active">
+        <img [src]="currentPost.imageUrl" alt="Story Image" class="absolute inset-0 w-full h-full object-cover object-center" style="width: 100%; height: 100%;">
+        <app-stars [average_rating]="currentPost.averageRating" class="absolute left-0 bottom-0 mb-5 ml-3"></app-stars>
+        <img [src]="currentPost.user.imageUrl" alt="User profile image" class="rounded-full absolute left-0 bottom-0 mb-14 ml-3 w-10 h-10">
+      </a>
+    </div>
+
+    <div class="px-4">
+      <button class="text-platinum font-semibold text-5xl ml-9 xs:ml-1 xxs:ml-0 xxxs:ml-0" (click)="nextItem()">></button>
+    </div>
+  </div>
+
+  <div class="flex items-center mt-6 mb-4">
+    <ng-container *ngFor="let story of highestRatedPosts; let i = index">
+      <div class="px-1" style="width: 30px">
+        <img [src]="i === highestRatedPostsIndex ? '../../../assets/images/Full_circle.png' : '../../../assets/images/Empty_Circle.png'" alt="Circle Image">
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="ml-4" style="width: 60vw">
+    <a [routerLink]="['/article']" [queryParams]="{postId: currentPost.id}" routerLinkActive="router-link-active">
+      <p class="text-platinum font-semibold text-3xl">{{ currentPost.title }}</p>
+      <p class="text-gray-400">{{ currentPost.text }}</p>
+    </a>
+  </div>
+</div>
+
+
+
+<div class="flex flex-col items-center justify-center background-black h-dvh">
+  <p class="text-6xl text-platinum pt-20 pb-20 font-semibold">A PASSION FOR TELLING STORIES</p>
+</div>
+

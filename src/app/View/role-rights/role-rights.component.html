@@ -1,0 +1,25 @@
+<div class="grid grid-cols-11 pt-5 ">
+  <div class="col-start-2 col-span-9">
+    <div class="flex flex-row">
+      <p class="text-platinum text-4xl font-bold">All Roles</p>
+      <button (click)="addRole()" class="ml-auto pr-2">
+        <mat-icon class="icon-display background-indian-red rounded text-platinum">add</mat-icon>
+      </button>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div *ngFor="let role of roles" class="border-2 border-platinum rounded pl-4 pt-4 pb-1 mt-4 mb-4">
+        <p class="text-2xl">{{role.name}}</p>
+        <div class="flex flex-row">
+          <div class="ml-auto pr-4 pb-2" *ngIf="role.name !== 'Admin'">
+            <button (click)="editRightsOfRole(role)">
+              <mat-icon class="icon-display-box">edit</mat-icon>
+            </button>
+            <button (click)="deleteRole(role)" class="pl-3">
+              <mat-icon class="icon-display-box">delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

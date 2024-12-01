@@ -1,0 +1,48 @@
+@media screen and (max-width: 780px) {
+  .flex-container {
+    flex-direction: column;
+  }
+}
+
+.padding-general {
+  @media screen and (max-width: 780px) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+.review-box{
+  @media screen and (max-width: 600px) {
+    width: 300px;
+  }
+}
+
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+
+  @media screen and (max-width: 999px) {
+    flex-direction: column;
+  }
+
+  .genre-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .genre-tag {
+    background-color: #f1f1f1;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+}
+
+.preserve-formatting {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+

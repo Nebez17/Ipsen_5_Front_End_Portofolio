@@ -1,0 +1,15 @@
+<div *ngIf="bigPost" class="relative rounded-lg overflow-hidden mr-3" style="width: 100%; height: 35vw;">
+  <a [routerLink]="['/article']" [queryParams]="{postId: bigPost.id}" routerLinkActive="router-link-active" id="bigPost">
+    <img [src]="bigPost.imageUrl" alt="Story Image" class="absolute inset-0 w-full h-full object-cover object-center" style="width: 100%; height: 100%;">
+    <app-stars [average_rating]="bigPost.averageRating" class="absolute left-0 bottom-0 mb-5 ml-3"></app-stars>
+    <a [routerLink]="['/profile']" [queryParams]="{username: bigPost.user.username}">
+      <img [src]="bigPost.user.imageUrl" alt="User profile image" class="rounded-full absolute left-0 bottom-0 mb-14 ml-3 w-10 h-10 border-2 border-platinum">
+    </a>
+  </a>
+</div>
+<div *ngIf="bigPost" class="ml-4 mt-4">
+  <a [routerLink]="['/article']" routerLinkActive="router-link-active">
+    <p id="bigPostTitle" class="text-platinum font-semibold text-3xl">{{ bigPost.title }}</p>
+    <p class="text-rosy-brown">Made by {{ bigPost.user.username }}, <br> on {{bigPost.localDate}}</p>
+  </a>
+</div>

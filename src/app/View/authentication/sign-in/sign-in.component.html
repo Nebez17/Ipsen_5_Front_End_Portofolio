@@ -1,0 +1,99 @@
+<div class="mt-10">
+  <input type="text"
+         name="username"
+         id="username"
+         [(ngModel)]="registerObj.username"
+         placeholder="Enter username"
+         class="w-96 h-12 text-my-black placeholder-gray-400 pl-2 rounded border focus:border-blue-500"
+         [ngClass]="{
+           'border-red-500 placeholder-red-500 border-2': !registerObj.username || isUsernameTaken
+         }"
+         (blur)="isUsernameAlreadyInDatabase(); isValidUsername()">
+</div>
+<div class="mt-5">
+  <input type="text"
+         name="email"
+         id="email"
+         [(ngModel)]="registerObj.email"
+         placeholder="Enter email"
+         class="w-96 h-12 text-my-black placeholder-gray-400 pl-2 rounded border focus:border-blue-500"
+         [ngClass]="{
+           'border-red-500 placeholder-red-500 border-2': !registerObj.email || !isEmailCorrect || isEmailTaken
+         }"
+         (blur)="isMailAlreadyInDatabase(); isValidEmail()">
+</div>
+<div class="mt-5">
+  <input type="text"
+         name="first_name"
+         id="first_name"
+         [(ngModel)]="registerObj.first_name"
+         placeholder="Enter First Name"
+         class="w-96 h-12 text-my-black placeholder-gray-400 pl-2 rounded border focus:border-blue-500"
+         [ngClass]="{
+           'border-red-500 placeholder-red-500 border-2': !registerObj.first_name || !isFirstNameCorrect
+         }"
+         (blur)="isValidFirstName()"></div>
+<div class="mt-5">
+  <input type="text"
+         name="last_name"
+         id="last_name"
+         [(ngModel)]="registerObj.last_name"
+         placeholder="Enter Last Name"
+         class="w-96 h-12 text-my-black placeholder-gray-400 pl-2 rounded border focus:border-blue-500"
+         [ngClass]="{
+           'border-red-500 placeholder-red-500 border-2': !registerObj.last_name || !isLastNameCorrect
+         }"
+         (blur)="isValidLastName()"></div>
+<div class="relative">
+  <div class="mt-5">
+    <input [type]="showPassword ? 'text' : 'password'"
+           name="password"
+           id="password"
+           [(ngModel)]="registerObj.password"
+           placeholder="Enter password"
+           class="w-96 h-12 text-my-black placeholder-gray-400 pl-2 rounded border focus:border-blue-500"
+           [ngClass]="{
+           'border-red-500 placeholder-red-500 border-2': !registerObj.password || !isPasswordCorrect
+         }"
+           (blur)="isValidPassword()">
+    <button alt="hide"
+            (click)="showPassword = !showPassword"
+            [class.hide]="!showPassword"
+            class="absolute inset-y-0 right-0 pr-2.5 top-1/2 transform -translate-y-1/2 text-my-black" >
+      <mat-icon *ngIf="showPassword">visibility</mat-icon>
+      <mat-icon *ngIf="!showPassword">visibility_off</mat-icon>
+    </button>
+  </div>
+</div>
+<div class="relative">
+  <div class="mt-5">
+    <input [type]="showConfirmPassword ? 'text' : 'password'"
+           name="password"
+           [(ngModel)]="registerObj.password_confirm"
+           id="password_confirm"
+           placeholder="Confirm password"
+           class="w-96 h-12 text-my-black placeholder-gray-400 pl-2 rounded border focus:border-blue-500"
+           [ngClass]="{
+           'border-red-500 placeholder-red-500 border-2': !registerObj.password_confirm || !isConfirmPasswordCorrect
+         }"
+           (blur)="isValidConfirmPassword()">
+    <button alt="hide"
+            (click)="showConfirmPassword = !showConfirmPassword"
+            [class.hide]="!showConfirmPassword"
+            class="absolute inset-y-0 right-0 pr-2.5 top-1/2 transform -translate-y-1/2 text-my-black">
+      <mat-icon *ngIf="showConfirmPassword">visibility</mat-icon>
+      <mat-icon *ngIf="!showConfirmPassword">visibility_off</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div class="pt-1">
+  <p *ngIf="isUsernameTaken && registerObj.username" class="text-red-600">Username already exists!</p>
+  <p *ngIf="isEmailTaken && registerObj.email" class="text-red-600">Email already exists!</p>
+  <p *ngIf="!isEmailCorrect && registerObj.email" class="text-red-600">Email not valid. It should contain "&#64;" and a domain</p>
+  <p *ngIf="!isFirstNameCorrect && registerObj.first_name" class="text-red-600">First name not valid. It can not contain special characters</p>
+  <p *ngIf="!isLastNameCorrect && registerObj.last_name" class="text-red-600">Last name not valid. It can not contain special characters</p>
+  <p *ngIf="!isPasswordCorrect && registerObj.password" class="text-red-600">Password minimal 8 characters <br>(capital letter, normal letter, number, special character)</p>
+  <p *ngIf="registerObj.password !== registerObj.password_confirm" class="text-red-600">Passwords are different</p>
+  <p *ngIf="!isUsernameCorrect && registerObj.username" class="text-red-600">Username is not valid. It can not contain special characters</p>
+</div>

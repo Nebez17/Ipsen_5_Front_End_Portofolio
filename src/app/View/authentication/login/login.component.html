@@ -1,0 +1,15 @@
+<div class="mt-10">
+  <input type="text" id="email" class="w-96 h-12 text-black placeholder-gray-400 pl-2 rounded" name="email" [(ngModel)]="loginObj.email" placeholder="Your email">
+</div>
+<div class="relative">
+  <div class="mt-5">
+    <input [type]="showPassword ? 'text' : 'password'" id="password" name="password" [(ngModel)]="loginObj.password" placeholder="Your password" class="w-96 h-12 text-black placeholder-gray-400 pl-2 rounded">
+    <button alt="hide"
+            (click)="showPassword = !showPassword"
+            [class.hide]="!showPassword"
+            class="absolute inset-y-0 right-0 pr-2.5 top-1/2 transform -translate-y-1/2 text-my-black">
+      <mat-icon *ngIf="showPassword">visibility</mat-icon>
+      <mat-icon *ngIf="!showPassword">visibility_off</mat-icon>
+    </button>
+  </div>
+</div>

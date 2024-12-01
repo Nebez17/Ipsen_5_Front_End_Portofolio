@@ -1,0 +1,15 @@
+<div class="relative h-screen text-white grid grid-cols-12 gap-4 mb-14">
+  <div *ngIf="pdfUrl" class="col-span-10 lg:col-span-7 col-start-2 lg:col-start-2 flex flex-col">
+    <iframe [src]="pdfUrl" class="w-full h-full" ></iframe>
+  </div>
+  <div *ngIf="!pdfUrl" class="text-center mt-3 col-span-10 lg:col-span-7 col-start-2 lg:col-start-2">
+    <p>No PDF available for this user.</p>
+  </div>
+
+  <div class="col-span-10 lg:col-span-3 col-start-2 lg:col-start-auto ">
+      <p>{{ submission?.additional_notes}}</p>
+    <ng-template [ngIf]="allCriteria !== undefined">
+      <app-rubrics [criteria]="allCriteria" [isUserReviewer]=isUserReviewer [submission]="submission" class="w-full"></app-rubrics>
+    </ng-template>
+  </div>
+</div>

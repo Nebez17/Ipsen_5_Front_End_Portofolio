@@ -1,0 +1,8 @@
+<div class="min-h-screen">
+  <h1 class="text-center text-2xl text-white mb-4" *ngIf="searchTerm">Results for "{{searchTerm}}"</h1>
+  <app-bulk-of-posts [posts]="searchResults" *ngIf="searchResults.length > 0; else noResults"></app-bulk-of-posts>
+
+  <ng-template #noResults>
+    <p class="text-center text-xl text-white">No search results found.</p>
+  </ng-template>
+</div>

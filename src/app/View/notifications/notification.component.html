@@ -1,0 +1,9 @@
+<div class="grid flex-col justify-center">
+  <p class="text-center text-2xl font-bold mb-4">Notifications</p>
+  <div id="notifications" *ngFor="let notification of notifications" class="flex justify-between items-center background-onyx dark:bg-gray-700 p-3 rounded-lg mb-2 shadow-sm">
+    <a id="notificationMessage" class="text-lg font-medium text-white dark:text-gray-200">
+      {{notification.message}}
+    </a>
+    <button id="markAsReadButton" (click)="markNotificationAsRead(notification)" class="text-sm ml-3 rounded-lg text-white background-indian-red px-4 py-2 hover:bg-red-500 dark:hover:bg-gray-600">Mark as read</button>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+::ng-deep {
+  .custom-slider {
+    .ngx-slider {
+      .ngx-slider-bar {
+        background: #5e5e5e !important; /* Color for the unselected portion of the bar */
+      }
+      .ngx-slider-selection {
+        background: #ffffff !important; /* Color for the selected portion of the bar */
+      }
+      .ngx-slider-pointer {
+        background: #ffffff !important; /* Color for the handles */
+        border: 1px solid #ffffff !important; /* Border color for the handles */
+        width: 20px !important; /* Adjust width as needed */
+        height: 20px !important; /* Adjust height as needed */
+        margin-top: 5px !important; /* Adjust margin-top as needed */
+      }
+      .ngx-slider-pointer::after {
+        display: none; /* Remove the blue dot */
+      }
+    }
+  }
+}

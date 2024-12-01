@@ -1,0 +1,54 @@
+<div id="starsComponent" class="flex flex-row">
+  <ng-container *ngIf="average_rating >= 0 && average_rating < 0.5; else rating1" class="flex flex-row">
+    <img src="../../../assets/images/Empty_Star.png" alt="User profile image" class="h-7">
+    <img src="../../../assets/images/Empty_Star.png" alt="User profile image" class="h-7">
+    <img src="../../../assets/images/Empty_Star.png" alt="User profile image" class="h-7">
+    <img src="../../../assets/images/Empty_Star.png" alt="User profile image" class="h-7">
+    <img src="../../../assets/images/Empty_Star.png" alt="User profile image" class="h-7">
+  </ng-container>
+  <ng-template #rating1>
+    <div *ngIf="average_rating >= 0.5 && average_rating < 1.5; else rating2" class="flex flex-row">
+      <img src="../../../assets/images/Full_Star.png" alt="User profile image" class="h-7">
+      <img src="../../../assets/images/Empty_Star.png" alt="User profile image" class="h-7">
+      <img src="../../../assets/images/Empty_Star.png" alt="User profile image" class="h-7">
+      <img src="../../../assets/images/Empty_Star.png" alt="User profile image" class="h-7">
+      <img src="../../../assets/images/Empty_Star.png" alt="User profile image" class="h-7">
+    </div>
+    <ng-template #rating2>
+      <div *ngIf="average_rating >= 1.5 && average_rating < 2.5; else rating3" class="flex flex-row">
+        <img src="../../../assets/images/Full_Star.png" alt="User profile image" class="h-7">
+        <img src="../../../assets/images/Full_Star.png" alt="User profile image" class="h-7">
+        <img src="../../../assets/images/Empty_Star.png" alt="User profile image" class="h-7">
+        <img src="../../../assets/images/Empty_Star.png" alt="User profile image" class="h-7">
+        <img src="../../../assets/images/Empty_Star.png" alt="User profile image" class="h-7">
+      </div>
+      <ng-template #rating3>
+        <div *ngIf="average_rating >= 2.5 && average_rating < 3.5; else rating4" class="flex flex-row">
+          <img src="../../../assets/images/Full_Star.png" alt="User profile image" class="h-7">
+          <img src="../../../assets/images/Full_Star.png" alt="User profile image" class="h-7">
+          <img src="../../../assets/images/Full_Star.png" alt="User profile image" class="h-7">
+          <img src="../../../assets/images/Empty_Star.png" alt="User profile image" class="h-7">
+          <img src="../../../assets/images/Empty_Star.png" alt="User profile image" class="h-7">
+        </div>
+        <ng-template #rating4>
+          <div *ngIf="average_rating >= 3.5 && average_rating < 4.5; else rating5" class="flex flex-row">
+            <img src="../../../assets/images/Full_Star.png" alt="User profile image" class="h-7">
+            <img src="../../../assets/images/Full_Star.png" alt="User profile image" class="h-7">
+            <img src="../../../assets/images/Full_Star.png" alt="User profile image" class="h-7">
+            <img src="../../../assets/images/Full_Star.png" alt="User profile image" class="h-7">
+            <img src="../../../assets/images/Empty_Star.png" alt="User profile image" class="h-7">
+          </div>
+          <ng-template #rating5>
+            <div *ngIf="average_rating >= 4.5 && average_rating <= 5" class="flex flex-row">
+              <img src="../../../assets/images/Full_Star.png" alt="User profile image" class="h-7">
+              <img src="../../../assets/images/Full_Star.png" alt="User profile image" class="h-7">
+              <img src="../../../assets/images/Full_Star.png" alt="User profile image" class="h-7">
+              <img src="../../../assets/images/Full_Star.png" alt="User profile image" class="h-7">
+              <img src="../../../assets/images/Full_Star.png" alt="User profile image" class="h-7">
+            </div>
+          </ng-template>
+        </ng-template>
+      </ng-template>
+    </ng-template>
+  </ng-template>
+</div>

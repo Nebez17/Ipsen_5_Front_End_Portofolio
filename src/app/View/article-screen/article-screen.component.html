@@ -1,0 +1,74 @@
+<div class="flex flex-col pl-44 pr-44 padding-general" *ngIf="post">
+  <div class="mt-3">
+    <button *ngIf="user && user.role.name === 'Admin'" (click)="deletePost()"
+            class="background-indian-red text-lg text-platinum rounded mr-3 pt-2 pb-2 pl-5 pr-5 font-semibold hover:bg-red-400">
+      Delete post
+    </button>
+  </div>
+  <p id="title" class="text-5xl pt-7 pb-3 text-platinum font-semibold">{{post.title}}</p>
+  <div class="flex flex-row flex-container">
+    <div>
+      <p id="date" class="text-rosy-brown pb-3 text-lg">{{post.localDate}}</p>
+      <div class="grid grid-cols-4">
+        <img [src]="post.imageUrl" alt="Article image" class="rounded col-start-1 col-span-3 w-full">
+      </div>
+      <div class="text-platinum mt-2">
+        <div class="grid grid-cols-3">
+          <div class="flex-row flex col-span-2">
+            <a [routerLink]="['/profile']" [queryParams]="{username: post.user.username}" class="flex items-center">
+              <img [src]="post.user.imageUrl" alt="User profile image" class="rounded-full w-10 h-10">
+              <div class="ml-2">
+                <br>
+                <p>{{post.user.username}}</p>
+                <p class="text-rosy-brown">3 Articles</p>
+              </div>
+            </a>
+            <div *ngIf="socialMedias" class="w-0.5 h-8 background-platinum ml-2 mt-8 hidden mmd:block"></div>
+            <div class="ml-2 mt-4 md:grid-cols-1 hidden mmd:block">
+              <app-social-media-links [socialMedias]="socialMedias" [iconSizeGeneral]="'h-8'" [iconSizeTwitter]="'h-7'"></app-social-media-links>
+            </div>
+          </div>
+          <div class="col-start-1 mt-7 mb-7 mmd:col-start-3">
+            <app-stars [average_rating]="post.averageRating"></app-stars>
+          </div>
+        </div>
+
+        <div class="mb-7 mmd:hidden">
+          <app-social-media-links [socialMedias]="socialMedias" [iconSizeGeneral]="'h-8'" [iconSizeTwitter]="'h-7'"></app-social-media-links>
+        </div>
+
+        <div id="genreTags" class="genre-tags">
+            <span *ngFor="let genre of post.genres" class="genre-tag">
+              {{ genre }}
+            </span>
+        </div>
+
+        <p class="text-lg pt-8" style="font-size: 20px;" [innerHTML]="formatPostText(post.text)">
+        </p>
+
+        <div class="mt-6 flex flex-row" *ngIf="isLoggedIn">
+          <p class="pr-3 text-platinum text-xl">Leave a review:</p>
+          <div class="stars-container" (mouseleave)="resetStars()">
+            <button class="star" *ngFor="let star of stars; let i = index"
+                    (mouseenter)="highlightStars(i + 1)"
+                    (click)="!ratingSet && setRating(i + 1)">
+              <img src="../../../assets/images/Empty_Star.png" alt="Star" class="h-7" *ngIf="!star.filled; else filledStar">
+              <ng-template #filledStar>
+                <img src="../../../assets/images/Full_Star.png" alt="Star" class="h-7">
+              </ng-template>
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-6 pb-10" *ngIf="isLoggedIn">
+          <input type="text" id="inputComment" [(ngModel)]="reactionText" class="w-96 review-box h-24 text-black pl-2 rounded background-platinum" placeholder="Write a review..">
+          <button id="postComment" (click)="placeReaction()" [disabled]="!isLoggedIn" class="background-indian-red text-platinum rounded ml-10 pt-2 pb-2 pl-5 pr-5 font-semibold hover:bg-red-400">Post</button>
+        </div>
+        <div *ngFor="let reaction of reactions" id="reaction-list">
+          <app-comment [reaction]="reaction" [post]="post" (reactionDeleted)="handleReactionDeleted($event)"></app-comment>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

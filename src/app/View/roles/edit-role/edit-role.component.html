@@ -1,0 +1,8 @@
+<div class="flex flex-row">
+  <mat-select [(value)]="selectedRole" class="rounded background-platinum pt-2 pb-2 pl-4 pr-4 min-w-32 t">
+    <mat-option *ngFor="let role of roles" [value]="role.id">{{role.name}}</mat-option>
+  </mat-select>
+  <button (click)="onSave(user)" class="background-indian-red ml-3 pl-4 pr-4 rounded hover:bg-red-300">
+    Edit
+  </button>
+</div>

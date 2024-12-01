@@ -1,0 +1,49 @@
+
+<div class="border rounded-md shadow-md p-4 mt-3">
+  <div class="flex items-center cursor-pointer justify-between" (click)="toggle()">
+    <h2 class="font-bold text-lg">{{ criteria.subName }}</h2>
+    <h2>{{ isOpen ? '&#9660;' : '&#9664;' }}</h2>
+  </div>
+  <div *ngIf="isOpen" class="mt-2">
+    <div class="flex flex-row justify-between mb-4" *ngIf="isUserReviewer || (!isUserReviewer && feedbackAlreadyDone)">
+
+      <button [class.selected]="selectedValue === 0" class="border-2 rounded p-2 hover:bg-gray-800"
+              title="{{ criteria.zeroPoints }}" (click)="onRatingChange(0)" [disabled]="feedbackAlreadyDone|| !isUserReviewer">0</button>
+      <button [class.selected]="selectedValue === 1" class="border-2 rounded p-2 hover:bg-gray-800"
+              title="{{ criteria.onePoints }}" (click)="onRatingChange(1)" [disabled]="feedbackAlreadyDone || !isUserReviewer">1</button>
+      <button [class.selected]="selectedValue === 2" class="border-2 rounded p-2 hover:bg-gray-800"
+              title="{{ criteria.twoPoints }}" (click)="onRatingChange(2)" [disabled]="feedbackAlreadyDone || !isUserReviewer">2</button>
+      <button [class.selected]="selectedValue === 3" class="border-2 rounded p-2 hover:bg-gray-800"
+              title="{{ criteria.threePoints }}" (click)="onRatingChange(3)" [disabled]="feedbackAlreadyDone || !isUserReviewer">3</button>
+      <button [class.selected]="selectedValue === 4" class="border-2 rounded p-2 hover:bg-gray-800"
+              title="{{ criteria.fourPoints }}" (click)="onRatingChange(4)" [disabled]="feedbackAlreadyDone || !isUserReviewer">4</button>
+      <button [class.selected]="selectedValue === 5" class="border-2 rounded p-2 hover:bg-gray-800"
+              title="{{ criteria.fivePoints }}" (click)="onRatingChange(5)" [disabled]="feedbackAlreadyDone|| !isUserReviewer">5</button>
+    </div>
+    <div class="mb-2">
+      <input *ngIf="!feedbackAlreadyDone && isUserReviewer" type="text" placeholder="Type your feedback..." class="text-my-black background-platinum p-2 w-full rounded"
+             [(ngModel)]="reactionText" (ngModelChange)="onTextChange()">
+      <div *ngIf="feedbackAlreadyDone" class="mt-3">
+        <p class="background-black border-2 border-platinum p-2 rounded">{{reactionsPerElement}}</p>
+      </div>
+      <div *ngIf="!feedbackAlreadyDoneButton && isUserReviewer" class="flex justify-end mt-3">
+        <button class="background-indian-red hover:bg-red-400 border-2 border-platinum p-2 rounded" (click)="addFeedbackPerElement()">Submit</button>
+      </div>
+      <div *ngIf="feedbackAlreadyDoneButton && isUserReviewer" class="flex justify-end mt-3">
+        <button (click)="editFeedback()" class="text-platinum background-indian-red hover:bg-red-400 border-2 border-platinum p-2 rounded">
+          Edit
+        </button>
+      </div>
+    </div>
+    <div *ngIf="noTextProvided">
+      <p class="text-indian-red">You have to add feedback before submitting!</p>
+    </div>
+    <div *ngIf="noRatingProvided">
+      <p class="text-indian-red">You have to add a rating before submitting!</p>
+    </div>
+    <div *ngIf="!feedbackAlreadyDone && !isUserReviewer">
+      <p>Not reviewed yet! Come back later.</p>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="relative pb-20 p-4 rounded" style="width: 350px;">
+  <a [routerLink]="['/article']" [queryParams]="{postId: post.id}" class="block" style="height: 144px;">
+    <img [src]="post.imageUrl" alt="Item Image" class="object-cover w-full h-full rounded">
+    <div class="absolute top-20 left-35 right-0 p-11">
+      <app-stars [average_rating]="post.averageRating"></app-stars>
+    </div>
+    <h3 id="postTitle" class="text-platinum font-bold">{{ post.title }}</h3>
+  </a>
+</div>

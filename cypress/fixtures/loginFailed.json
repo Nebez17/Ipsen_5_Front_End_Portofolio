@@ -1,0 +1,7 @@
+{
+  "timestamp": "2024-05-29T12:44:58.206+00:00",
+  "status": 403,
+  "error": "Forbidden",
+  "message": "No valid credentials",
+  "path": "/auth/login"
+}

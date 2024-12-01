@@ -1,0 +1,16 @@
+<div class="flex items-center space-x-6 pt-4 mb-4">
+  <div *ngFor="let socialMedia of socialMedias">
+    <div *ngIf="socialMedia.socialMediaCategory === 'INSTAGRAM'">
+      <a href="{{socialMedia.socialMediaLink}}"><img src="../../../assets/images/insta.png" alt="Instagram" [ngClass]="iconSizeGeneral"></a>
+    </div>
+    <div *ngIf="socialMedia.socialMediaCategory === 'TWITTER'">
+      <a href="{{socialMedia.socialMediaLink}}"><img src="../../../assets/images/x.png" alt="Twitter" [ngClass]="iconSizeTwitter"></a>
+    </div>
+    <div *ngIf="socialMedia.socialMediaCategory === 'YOUTUBE'">
+      <a href="{{socialMedia.socialMediaLink}}"><img src="../../../assets/images/youtube.png" alt="youtube" [ngClass]="iconSizeGeneral"></a>
+    </div>
+    <div *ngIf="socialMedia.socialMediaCategory === 'FACEBOOK'">
+      <a href="{{socialMedia.socialMediaLink}}"><img src="../../../assets/images/fb.png" alt="Facebook" [ngClass]="iconSizeGeneral"></a>
+    </div>
+  </div>
+</div>

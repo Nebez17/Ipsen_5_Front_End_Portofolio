@@ -1,0 +1,33 @@
+<div class="flex-row flex pb-10">
+  <img [src]="reaction.user_id.imageUrl" alt="User profile image" class="rounded-full w-10 h-10">
+  <div class="w-96 background-platinum text-my-black rounded ml-3">
+    <div class="flex flex-row mt-2">
+      <p class="pl-2 font-bold">{{reaction.user_id.first_name}}</p>
+      <p class="pl-2 text-rosy-brown">2 hrs ago</p>
+    </div>
+
+    <div *ngIf="!editing" class="flex flex-row pb-2">
+      <p class="pl-2">{{reaction.text}}</p>
+      <div class="ml-auto flex items-center"></div>
+      <div *ngIf="(isLoggedIn && reaction.user_id?.id === user?.id)"
+           >
+        <button (click)="editMode()">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+      <div *ngIf="(isLoggedIn && reaction.user_id?.id === user?.id) || user?.role?.name === 'Admin' || user?.role?.name === 'Moderator'"
+           class="pl-2 pr-5">
+        <button (click)="deleteReaction()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="editing" class="flex flex-row pb-2">
+      <input [(ngModel)]="editText" type="text" class="text-my-black background-platinum pl-2 ml-2 w-full rounded border-black border-2">
+      <button id="postComment" (click)="editReaction()"
+              class="background-indian-red text-platinum rounded pt-2 pb-2 pl-5 pr-5 hover:bg-red-400 mr-3 ml-3">Edit</button>
+    </div>
+
+    </div>
+</div>
